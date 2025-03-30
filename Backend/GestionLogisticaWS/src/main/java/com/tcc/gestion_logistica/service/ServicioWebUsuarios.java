@@ -24,7 +24,7 @@ public class ServicioWebUsuarios {
 	protected final Log log = LogFactory.getLog(this.getClass());
 	
 
-	@GetMapping(value = "/ListarUsuarios")
+	@GetMapping(value = "/ListaUsuarios")
 	public List<Usuarios> ListarUsuarios() {
 		try {
 			UsuariosDao servicioUsuarios = new UsuariosDao();
@@ -35,7 +35,7 @@ public class ServicioWebUsuarios {
 		}
 	}
 
-	@PostMapping(value = "/buscarUsuariosById", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/buscaUsuariosById", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public List<Usuarios> buscarUsuarioById(@RequestParam(value = "usuid") String idusu) {
 		try {
 			UsuariosDao servicioUsuarios = new UsuariosDao();
@@ -46,7 +46,7 @@ public class ServicioWebUsuarios {
 		}
 	}
 
-	@PostMapping(value = "/crearUsuario")
+	@PostMapping(value = "/creaUsuario")
 	public String crearUsuario(
 			@RequestParam(value = "usunombre") String usunombre,
 			@RequestParam(value = "usudireccion") String usudireccion,
@@ -80,7 +80,7 @@ public class ServicioWebUsuarios {
 		}
 	}
 
-	@PostMapping(value = "/editarUsuario")
+	@PostMapping(value = "/editaUsuario")
 	public String editarUsuario(
 			@RequestParam(value = "usuid") String usuid,
 			@RequestParam(value = "usunombre") String usunombre,
@@ -114,7 +114,7 @@ public class ServicioWebUsuarios {
 		}
 	}
 
-	@PostMapping(value = "/eliminarUsuario")
+	@PostMapping(value = "/eliminaUsuario")
 	public String eliminarUsuario(@RequestParam(value = "usuid") String usuid) {
 		try {
 			UsuariosDao servicioUsuarios = new UsuariosDao();

@@ -23,7 +23,7 @@ public class ServicioWebTipoDocumento {
 
 	protected final Log log = LogFactory.getLog(this.getClass());
 	
-	@GetMapping(value = "/ListarTipoDocumento")
+	@GetMapping(value = "/ListaTipoDocumento")
 	public List<TipoDocumento> ListarTipoDocumento() {
 		try {
 			TipoDocumentoDao servicioTipoDocumento = new TipoDocumentoDao();
@@ -34,7 +34,7 @@ public class ServicioWebTipoDocumento {
 		}
 	}
 
-	@PostMapping(value = "/buscarTipoDocumentoById", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/buscaTipoDocumentoById", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public List<TipoDocumento> buscarTipoDocumentoById(@RequestParam(value = "tdocid") String tdocrol) {
 		try {
 			TipoDocumentoDao servicioTipoDocumento = new TipoDocumentoDao();
@@ -45,7 +45,7 @@ public class ServicioWebTipoDocumento {
 		}
 	}
 
-	@PostMapping(value = "/crearTipoDocumento")
+	@PostMapping(value = "/creaTipoDocumento")
 	public String crearTipoDocumento(
 			@RequestParam(value = "tdocid") String tdocid,
 			@RequestParam(value = "tdocnombre") String tdocnombre,
@@ -65,7 +65,7 @@ public class ServicioWebTipoDocumento {
 		}
 	}
 
-	@PostMapping(value = "/editarTipoDocumento")
+	@PostMapping(value = "/editaTipoDocumento")
 	public String editarTipoDocumento(
 			@RequestParam(value = "tdocid") String tdocid,
 			@RequestParam(value = "tdocnombre") String tdocnombre,
@@ -85,7 +85,7 @@ public class ServicioWebTipoDocumento {
 		}
 	}
 
-	@PostMapping(value = "/eliminarTipoDocumento")
+	@PostMapping(value = "/eliminaTipoDocumento")
 	public String eliminarTipoDocumento(@RequestParam(value = "tdocid") String tdocid) {
 		try {
 			TipoDocumentoDao servicioTipoDocumento = new TipoDocumentoDao();

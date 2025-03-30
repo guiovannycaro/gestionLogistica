@@ -30,7 +30,7 @@ public class ServicioWebClientes {
 
 	protected final Log log = LogFactory.getLog(this.getClass());
 
-	@GetMapping(value = "/ListarClientes")
+	@GetMapping(value = "/ListaClientes")
 	@ApiOperation(value = "Consulta Cliente", response = Clientes.class, notes = "Obtiene todos Los Clientes ")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "La consulta se Ejecuto de manera correcta", response = Clientes.class),
@@ -49,7 +49,7 @@ public class ServicioWebClientes {
 		}
 	}
 
-	@PostMapping(value = "/buscarClientesById", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/buscaClientesById", consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "Consulta Cliente por id", response = Clientes.class, notes = "Obtiene todos Los Clientes por id ")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "La consulta se Ejecuto de manera correcta", response = Clientes.class),
@@ -70,7 +70,7 @@ public class ServicioWebClientes {
 		}
 	}
 
-	@PostMapping(value = "/crearClientes")
+	@PostMapping(value = "/creaClientes")
 	@ApiOperation(value = "Consulta crear clientes", response = Clientes.class, notes = "crea un nuevo cliente ")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "La consulta se Ejecuto de manera correcta", response = Clientes.class),
@@ -111,7 +111,7 @@ public class ServicioWebClientes {
 		}
 	}
 
-	@PostMapping(value = "/editarClientes")
+	@PostMapping(value = "/editaClientes")
 	@ApiOperation(value = "Consulta editar clientes", response = Clientes.class, notes = "edita un  cliente ")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "La consulta se Ejecuto de manera correcta", response = Clientes.class),
@@ -154,7 +154,7 @@ public class ServicioWebClientes {
 		}
 	}
 
-	@PostMapping(value = "/eliminarCliente")
+	@PostMapping(value = "/eliminaCliente")
 	@ApiOperation(value = "Consulta eliminar clientes", response = Clientes.class, notes = "elimina un cliente ")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "La consulta se Ejecuto de manera correcta", response = Clientes.class),

@@ -23,7 +23,7 @@ public class ServicioWebRoles {
 
 	protected final Log log = LogFactory.getLog(this.getClass());
 	
-	@GetMapping(value = "/ListarRoles")
+	@GetMapping(value = "/ListaRoles")
 	public List<Roles> ListarClientes() {
 		try {
 			RolesDao servicioRoles = new RolesDao();
@@ -34,7 +34,7 @@ public class ServicioWebRoles {
 		}
 	}
 
-	@PostMapping(value = "/buscarRolById", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/buscaRolById", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public List<Roles> buscarClientesById(@RequestParam(value = "rolid") String idrol) {
 		try {
 			RolesDao servicioRoles = new RolesDao();
@@ -45,7 +45,7 @@ public class ServicioWebRoles {
 		}
 	}
 
-	@PostMapping(value = "/crearRol")
+	@PostMapping(value = "/creaRol")
 	public String crearRol(
 			@RequestParam(value = "rolid") String rolid,
 			@RequestParam(value = "rolnombre") String rolnombre,
@@ -65,7 +65,7 @@ public class ServicioWebRoles {
 		}
 	}
 
-	@PostMapping(value = "/editarRol")
+	@PostMapping(value = "/editaRol")
 	public String editarRol(
 			@RequestParam(value = "rolid") String rolid,
 			@RequestParam(value = "rolnombre") String rolnombre,
@@ -85,7 +85,7 @@ public class ServicioWebRoles {
 		}
 	}
 
-	@PostMapping(value = "/eliminarRol")
+	@PostMapping(value = "/eliminaRol")
 	public String eliminarCliente(@RequestParam(value = "rolid") String rolid) {
 		try {
 			RolesDao servicioRoles = new RolesDao();
