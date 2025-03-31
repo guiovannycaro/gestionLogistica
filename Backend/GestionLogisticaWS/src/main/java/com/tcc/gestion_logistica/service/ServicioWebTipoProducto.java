@@ -1,4 +1,4 @@
-package com.tcc.gestion_logistica.controllers;
+package com.tcc.gestion_logistica.service;
 
 import java.util.Collections;
 import java.util.List;
@@ -23,7 +23,7 @@ import org.springframework.http.MediaType;
 @RestController
 @RequestMapping("/tcc/getion/CrudTipoProducto")
 @Api(value = "Servicio TipoProducto")
-public class TipoProductoController {
+public class ServicioWebTipoProducto {
 
 	protected final Log log = LogFactory.getLog(this.getClass());
 
@@ -133,3 +133,4 @@ public class TipoProductoController {
 	}
 
 }
+

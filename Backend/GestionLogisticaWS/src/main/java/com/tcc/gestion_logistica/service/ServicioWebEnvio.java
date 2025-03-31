@@ -1,4 +1,4 @@
-package com.tcc.gestion_logistica.controllers;
+package com.tcc.gestion_logistica.service;
 
 import java.util.Collections;
 import java.util.List;
@@ -20,12 +20,12 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.http.MediaType;
 
+
 @CrossOrigin(origins = {"http://localhost:4200/"} )
 @RestController
 @RequestMapping("/tcc/getion/CrudEnvio")
 @Api(value = "Servicio Envio")
-public class EnvioController {
-
+public class ServicioWebEnvio {
 	protected final Log log = LogFactory.getLog(this.getClass());
 
 	@GetMapping(value = "/ListarEnvio")

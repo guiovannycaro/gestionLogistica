@@ -2,8 +2,9 @@ package com.tcc.gestion_logistica.security;
 
 import org.springframework.stereotype.Service;
 
-
-
+import com.tcc.gestion_logistica.interfaces.ServicioSeguridad;
+import com.tcc.gestion_logistica.model.Roles;
+import com.tcc.gestion_logistica.model.Usuarios;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -19,7 +20,43 @@ import java.util.*;
 
 
 @Service
-public class AuthenticationService {
+public class AuthenticationService  implements ServicioSeguridad{
+
+	@Override
+	public ResponseEntity<?> authenticate(Usuarios datos) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Roles> getRoles(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String extendToken(String oldToken) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String generateToken(String username, List<Roles> rol, List<String> datosRecursos) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean logOut(String token) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Usuarios autenticacion(Usuarios datos) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	 
 }

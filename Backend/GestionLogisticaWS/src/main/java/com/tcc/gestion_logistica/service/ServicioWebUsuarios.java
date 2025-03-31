@@ -5,107 +5,110 @@ import java.util.Collections;
 import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.PostMapping;
+
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.tcc.gestion_logistica.dao.UsuariosDao;
+import com.tcc.gestion_logistica.dao.UsuariosControllerDao;
 import com.tcc.gestion_logistica.model.Usuarios;
 import com.tcc.gestion_logistica.util.ExceptionUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import org.springframework.http.MediaType;
+
 @CrossOrigin(origins = {"http://localhost:4200/"} )
 @RestController
 @RequestMapping("/tcc/getion/CrudUsuarios")
+@Api(value = "Servicio Usuarios")
 public class ServicioWebUsuarios {
 
 	protected final Log log = LogFactory.getLog(this.getClass());
-	
 
-	@GetMapping(value = "/ListaUsuarios")
-	public List<Usuarios> ListarUsuarios() {
+	@GetMapping(value = "/ListarUsuarios")
+	@ApiOperation(value = "lista Usuarios", response = Usuarios.class, notes = "Obtiene todos Los Datos ")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "La consulta se Ejecuto de manera correcta", response = Usuarios.class),
+		@ApiResponse(code = 400, message = "Bad Request.No existen registros Asociados (String)", response = Usuarios.class),
+		@ApiResponse(code = 500, message = "Error del sistema inesperado", response =Usuarios.class),
+		@ApiResponse(code = 403, message = "Acceso denegado", response = Usuarios.class),
+		@ApiResponse(code = 401, message = "No existen datos Asociados", response = Usuarios.class),
+		@ApiResponse(code = 404, message = "No existen datos Asociados", response =Usuarios.class), })
+	public List<Usuarios> ListarDetalleUsuarios() {
 		try {
-			UsuariosDao servicioUsuarios = new UsuariosDao();
-			return servicioUsuarios.devolverListaUsuarios();
+			UsuariosControllerDao servicioCliente = new UsuariosControllerDao();
+			return servicioCliente.listadoUsuarios();
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
 			return Collections.emptyList();
 		}
 	}
 
-	@PostMapping(value = "/buscaUsuariosById", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public List<Usuarios> buscarUsuarioById(@RequestParam(value = "usuid") String idusu) {
-		try {
-			UsuariosDao servicioUsuarios = new UsuariosDao();
-			return servicioUsuarios.devolverUsuariosById(Integer.parseInt(idusu));
-		} catch (Exception e) {
-			log.error(ExceptionUtil.format(e));
-			return Collections.emptyList();
-		}
-	}
-
-	@PostMapping(value = "/creaUsuario")
-	public String crearUsuario(
-			@RequestParam(value = "usunombre") String usunombre,
-			@RequestParam(value = "usudireccion") String usudireccion,
-			@RequestParam(value = "usutelefono") String usutelefono,
-			@RequestParam(value = "usucorreo") String usucorreo,
-			@RequestParam(value = "usunumdocumento") String usunumdocumento,
-			@RequestParam(value = "usupassword") String usupassword,
-			@RequestParam(value = "usutdocid") String usutdocid,
-			@RequestParam(value = "usurolid") String usurolid
-			) {
-		try {
-			UsuariosDao servicioUsuarios = new UsuariosDao();
-			Usuarios us = new Usuarios();
-
-			us.setUSU_ID(Integer.parseInt(usurolid));
-			us.setUSU_NOMBRES(usunombre);
-			us.setUSU_DIRECCION(usudireccion);
-			us.setUSU_TELEFONO(usutelefono);
-			us.setUSU_CORREO(usucorreo);
-			us.setUSU_NUMDOCUMENTO(usunumdocumento);
-			us.setUSU_PASSWORD(usupassword);
-			us.setUSU_TDOC_ID(Integer.parseInt(usutdocid));
-			us.setUSU_ROL_ID(Integer.parseInt(usurolid));
+	@GetMapping(value = "/buscarUsuariosById")
+	@ApiOperation(value = "Consulta Usuarios por id", response = Usuarios.class, notes = "Obtiene todos Los datos por id ")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "La consulta se Ejecuto de manera correcta", response = Usuarios.class),
+		@ApiResponse(code = 400, message = "Bad Request.No existen datos Asociados (String)", response = Usuarios.class),
+		@ApiResponse(code = 500, message = "Error del sistema inesperado", response = Usuarios.class),
+		@ApiResponse(code = 403, message = "Acceso denegado", response = Usuarios.class),
+		@ApiResponse(code = 401, message = "No existen datos Asociados", response = Usuarios.class),
+		@ApiResponse(code = 404, message = "No existen datos Asociados", response = Usuarios.class), })
+	public Usuarios buscarDetalleUsuariosById(
 			
-			return servicioUsuarios.agregarUsuario(us);
+			@RequestParam(value = "id")  String id
+			) {
+		Usuarios c = null;
+		try {
+			UsuariosControllerDao servicioCliente = new UsuariosControllerDao();
+			c = servicioCliente.buscarUsuariosXId(Integer.parseInt(id));
+		} catch (Exception e) {
+			log.error(ExceptionUtil.format(e));
+		}
+		return c;
+	}
 
-		
+	@PostMapping(value = "/crearUsuarios" , consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value = "Consulta crear Usuarios", response = Usuarios.class, notes = "crea un nuevo registro ")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "La consulta se Ejecuto de manera correcta", response = Usuarios.class),
+		@ApiResponse(code = 400, message = "Bad Request.No existen datos Asociados (String)", response = Usuarios.class),
+		@ApiResponse(code = 500, message = "Error del sistema inesperado", response = Usuarios.class),
+		@ApiResponse(code = 403, message = "Acceso denegado", response = Usuarios.class),
+		@ApiResponse(code = 401, message = "No existen datos Asociados ", response = Usuarios.class),
+		@ApiResponse(code = 404, message = "No existen datos Asociados", response = Usuarios.class), })
+	public String crearUsuarios(
+			@RequestBody Usuarios cliente) {
+		try {
+			UsuariosControllerDao servicioCliente = new UsuariosControllerDao();
+			return servicioCliente.crearUsuarios(cliente);
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
 			return "{\"codigo\":\"500\",\"mensaje\":\"Mensaje Informativo\",\"descripcion\":\"El registro no fue ingresado De Manera Correcta\"}";
 		}
 	}
 
-	@PostMapping(value = "/editaUsuario")
-	public String editarUsuario(
-			@RequestParam(value = "usuid") String usuid,
-			@RequestParam(value = "usunombre") String usunombre,
-			@RequestParam(value = "usudireccion") String usudireccion,
-			@RequestParam(value = "usutelefono") String usutelefono,
-			@RequestParam(value = "usucorreo") String usucorreo,
-			@RequestParam(value = "usunumdocumento") String usunumdocumento,
-			@RequestParam(value = "usupassword") String usupassword,
-			@RequestParam(value = "usutdocid") String usutdocid,
-			@RequestParam(value = "usurolid") String usurolid
-			) {
+	@PostMapping(value = "/editarUsuarios", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value = "Consulta editar Usuarios", response = Usuarios.class, notes = "edita un  registro ")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "La consulta se Ejecuto de manera correcta", response = Usuarios.class),
+		@ApiResponse(code = 400, message = "Bad Request.No existen datos Asociados(String)", response = Usuarios.class),
+		@ApiResponse(code = 500, message = "Error del sistema inesperado", response = Usuarios.class),
+		@ApiResponse(code = 403, message = "Acceso denegado", response = Usuarios.class),
+		@ApiResponse(code = 401, message = "No existen datos Asociados", response = Usuarios.class),
+		@ApiResponse(code = 404, message = "No existen datos Asociados", response = Usuarios.class), })
+	public String editarUsuarios(
+
+			@RequestBody Usuarios cliente) {
 		try {
-			UsuariosDao servicioUsuarios = new UsuariosDao();
-			Usuarios us = new Usuarios();
-			us.setUSU_ID(Integer.parseInt(usurolid));
-			us.setUSU_NOMBRES(usunombre);
-			us.setUSU_DIRECCION(usudireccion);
-			us.setUSU_TELEFONO(usutelefono);
-			us.setUSU_CORREO(usucorreo);
-			us.setUSU_NUMDOCUMENTO(usunumdocumento);
-			us.setUSU_PASSWORD(usupassword);
-			us.setUSU_TDOC_ID(Integer.parseInt(usutdocid));
-			us.setUSU_ROL_ID(Integer.parseInt(usurolid));
-			
-			return servicioUsuarios.actualizarUsuario(us);
+			UsuariosControllerDao servicioCliente = new UsuariosControllerDao();
+
+			return servicioCliente.editarUsuarios(cliente);
 
 			
 		} catch (Exception e) {
@@ -114,16 +117,26 @@ public class ServicioWebUsuarios {
 		}
 	}
 
-	@PostMapping(value = "/eliminaUsuario")
-	public String eliminarUsuario(@RequestParam(value = "usuid") String usuid) {
+	@GetMapping(value = "/eliminarUsuarios")
+	@ApiOperation(value = "Consulta eliminar Usuarios", response =Usuarios.class, notes = "elimina un registro ")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "La consulta se Ejecuto de manera correcta", response = Usuarios.class),
+		@ApiResponse(code = 400, message = "Bad Request.No existen datos Asociados(String)", response = Usuarios.class),
+		@ApiResponse(code = 500, message = "Error del sistema inesperado", response = Usuarios.class),
+		@ApiResponse(code = 403, message = "Acceso denegado", response = Usuarios.class),
+		@ApiResponse(code = 401, message = "No existen datos Asociados", response = Usuarios.class),
+		@ApiResponse(code = 404, message = "No existen datos Asociados", response = Usuarios.class), })
+	public String eliminarUsuarios(
+		
+			@RequestParam(value = "id")  String id) {
 		try {
-			UsuariosDao servicioUsuarios = new UsuariosDao();
-			return servicioUsuarios.eliminarUsuario(Integer.parseInt(usuid));
+			UsuariosControllerDao servicioCliente = new UsuariosControllerDao();
+			return servicioCliente.eliminarUsuarios(Integer.parseInt(id));
 		
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
 			return "error";
 		}
 	}
-	
+
 }

@@ -1,4 +1,4 @@
-package com.tcc.gestion_logistica.controllers;
+package com.tcc.gestion_logistica.service;
 
 import java.util.Collections;
 import java.util.List;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tcc.gestion_logistica.dao.DetalleEnvioControllerDao;
 import com.tcc.gestion_logistica.model.DatosEnvio;
 import com.tcc.gestion_logistica.model.DetalleEnvio;
-import com.tcc.gestion_logistica.model.Productos;
+
 import com.tcc.gestion_logistica.util.ExceptionUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -26,7 +26,7 @@ import org.springframework.http.MediaType;
 @RestController
 @RequestMapping("/tcc/getion/CrudDetalleEnvio")
 @Api(value = "Servicio DetalleEnvio")
-public class DetalleEnvioController {
+public class ServicioWebDetalleEnvio {
 
 	protected final Log log = LogFactory.getLog(this.getClass());
 
@@ -137,3 +137,4 @@ public class DetalleEnvioController {
 	}
 
 }
+
