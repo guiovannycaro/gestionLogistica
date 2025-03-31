@@ -22,7 +22,7 @@ import org.springframework.http.MediaType;
 
 @CrossOrigin(origins = {"http://localhost:4200/"} )
 @RestController
-@RequestMapping("/tcc/getion/CrudRoles")
+@RequestMapping("/tcc/gestion/CrudRoles")
 @Api(value = "Servicio Roles")
 public class ServicioWebRoles {
 

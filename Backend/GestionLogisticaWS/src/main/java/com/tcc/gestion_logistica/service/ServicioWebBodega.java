@@ -22,7 +22,7 @@ import org.springframework.http.MediaType;
 
 @CrossOrigin(origins = {"http://localhost:4200/"} )
 @RestController
-@RequestMapping("/tcc/getion/CrudBodega")
+@RequestMapping("/tcc/gestion/CrudBodega")
 @Api(value = "Servicio Bodega")
 public class ServicioWebBodega {
 	protected final Log log = LogFactory.getLog(this.getClass());

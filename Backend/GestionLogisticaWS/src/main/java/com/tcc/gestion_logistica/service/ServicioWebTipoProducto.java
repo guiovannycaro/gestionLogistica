@@ -21,7 +21,7 @@ import org.springframework.http.MediaType;
 
 @CrossOrigin(origins = {"http://localhost:4200/"} )
 @RestController
-@RequestMapping("/tcc/getion/CrudTipoProducto")
+@RequestMapping("/tcc/gestion/CrudTipoProducto")
 @Api(value = "Servicio TipoProducto")
 public class ServicioWebTipoProducto {
 
