@@ -77,7 +77,7 @@ OR REPLACE PROCEDURE SCH_CN.GL_PInsertarCliente (
     --
     -- Responsable  de InsertarCliente 
     --
-    OPEN OUT_CURSOR FOR
+  
 	
 	insert into SCH_CN.GL_TCLIENTES(CLI_CEDULA,CLI_TIPODOCUMENTO,CLI_NOMBRES,CLI_CIUDAD_ID,CLI_CORREO,CLI_CELULAR,CLI_ESTADO,CLI_DIRECCION) 
 values(p_CLI_CEDULA_init,p_CLI_TIPODOCUMENTO_init,p_CLI_NOMBRES_init,p_CLI_CIUDAD_ID_init,p_CLI_CORREO_init,p_CLI_CELULAR_init,p_CLI_ESTADO_init,p_CLI_DIRECCION_init);
@@ -283,7 +283,7 @@ OUT_CURSOR OUT SYS_REFCURSOR
      FROM
        SCH_CN.GL_TCLIENTES
 	   WHERE
-          CLI_ID = p_codigo_init;
+          CLI_ID = p_codigo_init
      ORDER BY
        SCH_CN.GL_TCLIENTES.CLI_CEDULA;
 EXCEPTION
