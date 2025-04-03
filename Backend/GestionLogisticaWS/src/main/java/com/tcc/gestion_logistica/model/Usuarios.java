@@ -29,6 +29,21 @@ public class Usuarios {
 
 	public Usuarios() {
 	}
+	
+	public Usuarios(Integer uSU_ID, String uSU_NOMBRES, String uSU_DIRECCION, String uSU_TELEFONO, String uSU_CORREO,
+			String uSU_NUMDOCUMENTO, String uSU_PASSWORD, Integer uSU_TDOC_ID, Integer uSU_ROL_ID, Integer uSU_ESTADO) {
+		
+		USU_ID = uSU_ID;
+		USU_NOMBRES = uSU_NOMBRES;
+		USU_DIRECCION = uSU_DIRECCION;
+		USU_TELEFONO = uSU_TELEFONO;
+		USU_CORREO = uSU_CORREO;
+		USU_NUMDOCUMENTO = uSU_NUMDOCUMENTO;
+		USU_PASSWORD = uSU_PASSWORD;
+		USU_TDOC_ID = uSU_TDOC_ID;
+		USU_ROL_ID = uSU_ROL_ID;
+		USU_ESTADO = uSU_ESTADO;
+	}
 
 	public Integer getUSU_ID() {
 		return USU_ID;
@@ -110,20 +125,7 @@ public class Usuarios {
 		USU_ESTADO = uSU_ESTADO;
 	}
 
-	public Usuarios(Integer uSU_ID, String uSU_NOMBRES, String uSU_DIRECCION, String uSU_TELEFONO, String uSU_CORREO,
-			String uSU_NUMDOCUMENTO, String uSU_PASSWORD, Integer uSU_TDOC_ID, Integer uSU_ROL_ID, Integer uSU_ESTADO) {
-		
-		USU_ID = uSU_ID;
-		USU_NOMBRES = uSU_NOMBRES;
-		USU_DIRECCION = uSU_DIRECCION;
-		USU_TELEFONO = uSU_TELEFONO;
-		USU_CORREO = uSU_CORREO;
-		USU_NUMDOCUMENTO = uSU_NUMDOCUMENTO;
-		USU_PASSWORD = uSU_PASSWORD;
-		USU_TDOC_ID = uSU_TDOC_ID;
-		USU_ROL_ID = uSU_ROL_ID;
-		USU_ESTADO = uSU_ESTADO;
-	}
+
 
 	@Override
 	public String toString() {

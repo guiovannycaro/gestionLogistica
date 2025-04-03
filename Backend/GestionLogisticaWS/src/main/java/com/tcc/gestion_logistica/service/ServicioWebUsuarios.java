@@ -15,12 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.tcc.gestion_logistica.dao.UsuariosControllerDao;
+import com.tcc.gestion_logistica.interfaces.UsuariosInterfacerDao;
 import com.tcc.gestion_logistica.model.Usuarios;
 import com.tcc.gestion_logistica.util.ExceptionUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
 @CrossOrigin(origins = {"http://localhost:4200/"} )
@@ -30,6 +33,9 @@ import org.springframework.http.MediaType;
 public class ServicioWebUsuarios {
 
 	protected final Log log = LogFactory.getLog(this.getClass());
+	
+	 @Autowired
+	    private UsuariosInterfacerDao servicioCliente;
 
 	@GetMapping(value = "/ListarUsuarios")
 	@ApiOperation(value = "lista Usuarios", response = Usuarios.class, notes = "Obtiene todos Los Datos ")
@@ -42,7 +48,7 @@ public class ServicioWebUsuarios {
 		@ApiResponse(code = 404, message = "No existen datos Asociados", response =Usuarios.class), })
 	public List<Usuarios> ListarDetalleUsuarios() {
 		try {
-			UsuariosControllerDao servicioCliente = new UsuariosControllerDao();
+			
 			return servicioCliente.listadoUsuarios();
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -65,7 +71,7 @@ public class ServicioWebUsuarios {
 			) {
 		Usuarios c = null;
 		try {
-			UsuariosControllerDao servicioCliente = new UsuariosControllerDao();
+			
 			c = servicioCliente.buscarUsuariosXId(Integer.parseInt(id));
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -85,7 +91,7 @@ public class ServicioWebUsuarios {
 	public String crearUsuarios(
 			@RequestBody Usuarios cliente) {
 		try {
-			UsuariosControllerDao servicioCliente = new UsuariosControllerDao();
+			
 			return servicioCliente.crearUsuarios(cliente);
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -106,7 +112,7 @@ public class ServicioWebUsuarios {
 
 			@RequestBody Usuarios cliente) {
 		try {
-			UsuariosControllerDao servicioCliente = new UsuariosControllerDao();
+			
 
 			return servicioCliente.editarUsuarios(cliente);
 
@@ -130,7 +136,7 @@ public class ServicioWebUsuarios {
 		
 			@RequestParam(value = "id")  String id) {
 		try {
-			UsuariosControllerDao servicioCliente = new UsuariosControllerDao();
+			
 			return servicioCliente.eliminarUsuarios(Integer.parseInt(id));
 		
 		} catch (Exception e) {
