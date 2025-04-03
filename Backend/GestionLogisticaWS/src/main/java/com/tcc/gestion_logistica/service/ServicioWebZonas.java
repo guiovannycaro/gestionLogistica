@@ -11,12 +11,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.tcc.gestion_logistica.dao.ZonasControllerDao;
+import com.tcc.gestion_logistica.interfaces.UsuariosInterfacerDao;
+import com.tcc.gestion_logistica.interfaces.ZonasInterfaceDao;
 import com.tcc.gestion_logistica.model.Zonas;
 import com.tcc.gestion_logistica.util.ExceptionUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
 @CrossOrigin(origins = {"http://localhost:4200/"} )
@@ -26,6 +30,9 @@ import org.springframework.http.MediaType;
 public class ServicioWebZonas {
 
 	protected final Log log = LogFactory.getLog(this.getClass());
+	
+	 @Autowired
+	    private ZonasInterfaceDao servicioCliente;
 
 	@GetMapping(value = "/ListarZonas")
 	@ApiOperation(value = "lista Zonas", response = Zonas.class, notes = "Obtiene todos Los Datos ")
@@ -38,7 +45,7 @@ public class ServicioWebZonas {
 		@ApiResponse(code = 404, message = "No existen datos Asociados", response =Zonas.class), })
 	public List<Zonas> ListarDetalleZonas() {
 		try {
-			ZonasControllerDao servicioCliente = new ZonasControllerDao();
+			
 			return servicioCliente.listadoZonas();
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -58,7 +65,7 @@ public class ServicioWebZonas {
 	public Zonas buscarDetalleUsuariosById(@RequestBody Zonas cliente) {
 		Zonas c = null;
 		try {
-			ZonasControllerDao servicioCliente = new ZonasControllerDao();
+			
 			c = servicioCliente.buscarZonasXId(cliente);
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -78,7 +85,7 @@ public class ServicioWebZonas {
 	public String crearZonas(
 			@RequestBody Zonas cliente) {
 		try {
-			ZonasControllerDao servicioCliente = new ZonasControllerDao();
+			
 			return servicioCliente.crearZonas(cliente);
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -99,7 +106,7 @@ public class ServicioWebZonas {
 
 			@RequestBody Zonas cliente) {
 		try {
-			ZonasControllerDao servicioCliente = new ZonasControllerDao();
+			
 
 			return servicioCliente.editarZonas(cliente);
 
@@ -123,7 +130,7 @@ public class ServicioWebZonas {
 		
 			@RequestBody Zonas cliente) {
 		try {
-			ZonasControllerDao servicioCliente = new ZonasControllerDao();
+			
 			return servicioCliente.eliminarZonas(cliente);
 		
 		} catch (Exception e) {

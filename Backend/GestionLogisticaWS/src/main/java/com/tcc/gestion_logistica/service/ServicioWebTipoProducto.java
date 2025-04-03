@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.tcc.gestion_logistica.dao.TipoProductoControllerDao;
+import com.tcc.gestion_logistica.interfaces.TipoProductoInterfaceDao;
 import com.tcc.gestion_logistica.model.TipoProducto;
 import com.tcc.gestion_logistica.util.ExceptionUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
 @CrossOrigin(origins = {"http://localhost:4200/"} )
@@ -26,6 +29,8 @@ import org.springframework.http.MediaType;
 public class ServicioWebTipoProducto {
 
 	protected final Log log = LogFactory.getLog(this.getClass());
+	 @Autowired
+	 private TipoProductoInterfaceDao servicioCliente;
 
 	@GetMapping(value = "/ListarTipoProducto")
 	@ApiOperation(value = "lista TipoProducto", response = TipoProducto.class, notes = "Obtiene todos Los Datos ")
@@ -38,7 +43,7 @@ public class ServicioWebTipoProducto {
 		@ApiResponse(code = 404, message = "No existen datos Asociados", response = TipoProducto.class), })
 	public List<TipoProducto> ListarDetalleTipoProducto() {
 		try {
-			TipoProductoControllerDao servicioCliente = new TipoProductoControllerDao();
+			
 			return servicioCliente.listadoTipoProducto();
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -58,7 +63,7 @@ public class ServicioWebTipoProducto {
 	public TipoProducto buscarDetalleRolesById(@RequestBody TipoProducto cliente) {
 		TipoProducto c = null;
 		try {
-			TipoProductoControllerDao servicioCliente = new TipoProductoControllerDao();
+			
 			c = servicioCliente.buscarTipoProductoXId(cliente);
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -78,7 +83,7 @@ public class ServicioWebTipoProducto {
 	public String crearTipoProducto(
 			@RequestBody TipoProducto cliente) {
 		try {
-			TipoProductoControllerDao servicioCliente = new TipoProductoControllerDao();
+			
 			return servicioCliente.crearTipoProducto(cliente);
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -99,7 +104,7 @@ public class ServicioWebTipoProducto {
 
 			@RequestBody TipoProducto cliente) {
 		try {
-			TipoProductoControllerDao servicioCliente = new TipoProductoControllerDao();
+		
 
 			return servicioCliente.editarTipoProducto(cliente);
 
@@ -123,7 +128,7 @@ public class ServicioWebTipoProducto {
 		
 			@RequestBody TipoProducto cliente) {
 		try {
-			TipoProductoControllerDao servicioCliente = new TipoProductoControllerDao();
+			
 			return servicioCliente.eliminarTipoProducto(cliente);
 		
 		} catch (Exception e) {
