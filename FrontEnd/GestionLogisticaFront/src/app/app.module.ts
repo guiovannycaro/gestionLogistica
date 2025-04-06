@@ -20,7 +20,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { BreadcrumbsComponent } from './shared/breadcrumbs/breadcrumbs.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { HeaderComponent } from './Plantillas/header/header/header.component';
+
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 
@@ -59,7 +59,7 @@ import { NopageFoundComponent } from './nopage-found/nopage-found.component';
     FooterComponent,
 
 
-    HeaderComponent,
+
 
     NavbarComponent,
     BreadcrumbsComponent,
