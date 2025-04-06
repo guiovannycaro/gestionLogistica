@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.tcc.gestion_logistica.dao.RolesControllerDao;
+import com.tcc.gestion_logistica.interfaces.RolesInterfacerDao;
 import com.tcc.gestion_logistica.model.Roles;
 import com.tcc.gestion_logistica.util.ExceptionUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
 @CrossOrigin(origins = {"http://localhost:4200/"} )
@@ -27,6 +30,8 @@ import org.springframework.http.MediaType;
 public class ServicioWebRoles {
 
 	protected final Log log = LogFactory.getLog(this.getClass());
+	 @Autowired
+	private RolesInterfacerDao servicioCliente;
 
 	@GetMapping(value = "/ListarRoles")
 	@ApiOperation(value = "lista Roles", response = Roles.class, notes = "Obtiene todos Los Datos ")
@@ -39,7 +44,7 @@ public class ServicioWebRoles {
 		@ApiResponse(code = 404, message = "No existen datos Asociados", response = Roles.class), })
 	public List<Roles> ListarDetalleProducto() {
 		try {
-			RolesControllerDao servicioCliente = new RolesControllerDao();
+			
 			return servicioCliente.listadoRoles();
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -59,7 +64,7 @@ public class ServicioWebRoles {
 	public Roles buscarDetalleRolesById(@RequestBody Roles cliente) {
 		Roles c = null;
 		try {
-			RolesControllerDao servicioCliente = new RolesControllerDao();
+			
 			c = servicioCliente.buscarRolesXId(cliente);
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -79,7 +84,7 @@ public class ServicioWebRoles {
 	public String crearRoles(
 			@RequestBody Roles cliente) {
 		try {
-			RolesControllerDao servicioCliente = new RolesControllerDao();
+		
 			return servicioCliente.crearRoles(cliente);
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -100,7 +105,7 @@ public class ServicioWebRoles {
 
 			@RequestBody Roles cliente) {
 		try {
-			RolesControllerDao servicioCliente = new RolesControllerDao();
+			
 
 			return servicioCliente.editarRoles(cliente);
 
@@ -124,7 +129,7 @@ public class ServicioWebRoles {
 		
 			@RequestBody Roles cliente) {
 		try {
-			RolesControllerDao servicioCliente = new RolesControllerDao();
+			
 			return servicioCliente.eliminarRoles(cliente);
 		
 		} catch (Exception e) {

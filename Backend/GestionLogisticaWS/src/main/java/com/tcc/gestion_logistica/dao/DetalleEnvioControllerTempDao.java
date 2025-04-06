@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Service;
 
 import com.tcc.gestion_logistica.interfaces.DeralleEnvioTempinterfaceDao;
 import com.tcc.gestion_logistica.model.DatosEnvioD;
@@ -14,7 +15,7 @@ import com.tcc.gestion_logistica.model.Usuarios;
 import com.tcc.gestion_logistica.util.ProcedureUtil;
 
 import io.swagger.annotations.ApiModelProperty;
-
+@Service
 public class DetalleEnvioControllerTempDao implements DeralleEnvioTempinterfaceDao{
 
 	protected final Log log = LogFactory.getLog(this.getClass());

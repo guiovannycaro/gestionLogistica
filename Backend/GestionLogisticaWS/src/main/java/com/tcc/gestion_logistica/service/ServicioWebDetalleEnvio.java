@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.tcc.gestion_logistica.dao.DetalleEnvioControllerDao;
+import com.tcc.gestion_logistica.interfaces.DeralleEnviointerfaceDao;
 import com.tcc.gestion_logistica.model.DatosEnvio;
 import com.tcc.gestion_logistica.model.DetalleEnvio;
 
@@ -20,6 +21,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
 @CrossOrigin(origins = {"http://localhost:4200/"} )
@@ -29,7 +32,9 @@ import org.springframework.http.MediaType;
 public class ServicioWebDetalleEnvio {
 
 	protected final Log log = LogFactory.getLog(this.getClass());
-
+	@Autowired
+protected DeralleEnviointerfaceDao servicioCliente;
+	
 	@GetMapping(value = "/ListarDetalleEnvio")
 	@ApiOperation(value = "lista DetalleEnvio", response = DetalleEnvio.class, notes = "Obtiene todos Los Datos ")
 	@ApiResponses({
@@ -41,7 +46,7 @@ public class ServicioWebDetalleEnvio {
 		@ApiResponse(code = 404, message = "No existen datos Asociados", response = DetalleEnvio.class), })
 	public List<DetalleEnvio> ListarDetalleEnvio() {
 		try {
-			DetalleEnvioControllerDao servicioCliente = new DetalleEnvioControllerDao();
+			
 			return servicioCliente.listadoDetalleEnvio();
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -61,7 +66,7 @@ public class ServicioWebDetalleEnvio {
 	public DetalleEnvio buscarDetalleEnvioById(@RequestParam(value = "id")  String id) {
 		DetalleEnvio c = null;
 		try {
-			DetalleEnvioControllerDao servicioCliente = new DetalleEnvioControllerDao();
+		
 			c = servicioCliente.buscarDetalleEnvioXId(Integer.parseInt(id));
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -82,7 +87,7 @@ public class ServicioWebDetalleEnvio {
 			@RequestBody DatosEnvio cliente) {
 		try {
 			System.out.println("cliente " + cliente.getDATENV_ID() + " "+ cliente.getDATENV_CANTIDAD() + " " + cliente.getDATENV_REF());
-			DetalleEnvioControllerDao servicioCliente = new DetalleEnvioControllerDao();
+			
 			return servicioCliente.crearDetalleEnvio(cliente);
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -103,7 +108,7 @@ public class ServicioWebDetalleEnvio {
 
 			@RequestBody DetalleEnvio cliente) {
 		try {
-			DetalleEnvioControllerDao servicioCliente = new DetalleEnvioControllerDao();
+		
 
 			return servicioCliente.editarDetalleEnvio(cliente);
 
@@ -127,7 +132,7 @@ public class ServicioWebDetalleEnvio {
 		
 			@RequestParam(value = "id")  String id) {
 		try {
-			DetalleEnvioControllerDao servicioCliente = new DetalleEnvioControllerDao();
+			
 			return servicioCliente.eliminarDetalleEnvio(Integer.parseInt(id));
 		
 		} catch (Exception e) {

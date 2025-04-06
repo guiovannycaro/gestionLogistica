@@ -12,12 +12,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.tcc.gestion_logistica.dao.TipoDocumentoControllerDao;
+import com.tcc.gestion_logistica.interfaces.TipoDocumentoImplementsDao;
+import com.tcc.gestion_logistica.interfaces.TipoProductoInterfaceDao;
 import com.tcc.gestion_logistica.model.TipoDocumento;
 import com.tcc.gestion_logistica.util.ExceptionUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
 
@@ -27,6 +31,9 @@ import org.springframework.http.MediaType;
 @Api(value = "Servicio TipoDocumento")
 public class ServicioWebTipoDocumento {
 	protected final Log log = LogFactory.getLog(this.getClass());
+	
+	 @Autowired
+	 private TipoDocumentoImplementsDao servicioCliente;
 
 	@GetMapping(value = "/ListarTipoDocumento")
 	@ApiOperation(value = "lista TipoDocumento", response = TipoDocumento.class, notes = "Obtiene todos Los Datos ")
@@ -39,7 +46,7 @@ public class ServicioWebTipoDocumento {
 		@ApiResponse(code = 404, message = "No existen datos Asociados", response = TipoDocumento.class), })
 	public List<TipoDocumento> ListarDetalleTipoBodega() {
 		try {
-			TipoDocumentoControllerDao servicioCliente = new TipoDocumentoControllerDao();
+			
 			return servicioCliente.listadoTipoDocumento();
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -59,7 +66,7 @@ public class ServicioWebTipoDocumento {
 	public TipoDocumento buscarDetalleRolesById(@RequestBody TipoDocumento cliente) {
 		TipoDocumento c = null;
 		try {
-			TipoDocumentoControllerDao servicioCliente = new TipoDocumentoControllerDao();
+			
 			c = servicioCliente.buscarTipoDocumentoXId(cliente);
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -79,7 +86,7 @@ public class ServicioWebTipoDocumento {
 	public String crearTipoDocumento(
 			@RequestBody TipoDocumento cliente) {
 		try {
-			TipoDocumentoControllerDao servicioCliente = new TipoDocumentoControllerDao();
+			
 			return servicioCliente.crearTipoDocumento(cliente);
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -100,7 +107,7 @@ public class ServicioWebTipoDocumento {
 
 			@RequestBody TipoDocumento cliente) {
 		try {
-			TipoDocumentoControllerDao servicioCliente = new TipoDocumentoControllerDao();
+			
 
 			return servicioCliente.editarTipoDocumento(cliente);
 
@@ -124,7 +131,7 @@ public class ServicioWebTipoDocumento {
 		
 			@RequestBody TipoDocumento cliente) {
 		try {
-			TipoDocumentoControllerDao servicioCliente = new TipoDocumentoControllerDao();
+			
 			return servicioCliente.eliminarTipoDocumento(cliente);
 		
 		} catch (Exception e) {

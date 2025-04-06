@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tcc.gestion_logistica.dao.ClientesControllerDao;
+import com.tcc.gestion_logistica.interfaces.ClientesInterfaceDao;
 import com.tcc.gestion_logistica.model.Clientes;
 import com.tcc.gestion_logistica.util.ExceptionUtil;
 
@@ -22,6 +23,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
 @CrossOrigin(origins = {"http://localhost:4200/"} )
@@ -32,6 +34,9 @@ public class ServicioWebClientes {
 
 	protected final Log log = LogFactory.getLog(this.getClass());
 
+	@Autowired
+	protected ClientesInterfaceDao servicioCliente;
+	
 	@GetMapping(value = "/ListarClientes")
 	@ApiOperation(value = "Consulta Cliente", response = Clientes.class, notes = "Obtiene todos Los Clientes ")
 	@ApiResponses({
@@ -43,7 +48,7 @@ public class ServicioWebClientes {
 		@ApiResponse(code = 404, message = "No existen Clientes Asociados a esa cedula", response = Clientes.class), })
 	public List<Clientes> ListarClientes() {
 		try {
-			ClientesControllerDao servicioCliente = new ClientesControllerDao();
+			
 			return servicioCliente.listadoDeClientes();
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -63,7 +68,7 @@ public class ServicioWebClientes {
 	public Clientes buscarClientesById(@RequestParam(value = "id")  String id) {
 		Clientes c = null;
 		try {
-			ClientesControllerDao servicioCliente = new ClientesControllerDao();
+			
 			c = servicioCliente.buscarClienteXId(Integer.parseInt(id));
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -83,7 +88,7 @@ public class ServicioWebClientes {
 	public String crearClientes(
 			@RequestBody Clientes cliente) {
 		try {
-			ClientesControllerDao servicioCliente = new ClientesControllerDao();
+			
 			return servicioCliente.crearCliente(cliente);
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -104,7 +109,7 @@ public class ServicioWebClientes {
 
 			@RequestBody Clientes cliente) {
 		try {
-			ClientesControllerDao servicioCliente = new ClientesControllerDao();
+			
 
 			return servicioCliente.editarCliente(cliente);
 
@@ -128,7 +133,7 @@ public class ServicioWebClientes {
 		
 			@RequestParam(value = "id")  String id) {
 		try {
-			ClientesControllerDao servicioCliente = new ClientesControllerDao();
+			
 			return servicioCliente.eliminarCliente(Integer.parseInt(id));
 		
 		} catch (Exception e) {

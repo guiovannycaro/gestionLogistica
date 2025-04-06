@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.tcc.gestion_logistica.dao.DetalleEnvioControllerTempDao;
+import com.tcc.gestion_logistica.interfaces.DeralleEnvioTempinterfaceDao;
 import com.tcc.gestion_logistica.model.DatosEnvioD;
 import com.tcc.gestion_logistica.model.DetalleEnvioTemp;
 import com.tcc.gestion_logistica.util.ExceptionUtil;
@@ -19,6 +20,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
 
@@ -28,6 +31,8 @@ import org.springframework.http.MediaType;
 @Api(value = "Servicio DetalleEnvioTemp")
 public class ServicioWebDetalleEnvioTemp {
 	protected final Log log = LogFactory.getLog(this.getClass());
+	@Autowired
+	private DeralleEnvioTempinterfaceDao servicioCliente;
 
 	@GetMapping(value = "/ListarDetalleEnvioTemp")
 	@ApiOperation(value = "lista DetalleEnvioTemp", response = DetalleEnvioTemp.class, notes = "Obtiene todos Los Datos ")
@@ -40,7 +45,7 @@ public class ServicioWebDetalleEnvioTemp {
 		@ApiResponse(code = 404, message = "No existen datos Asociados", response = DetalleEnvioTemp.class), })
 	public List<DetalleEnvioTemp> ListarDetalleEnvioTemp() {
 		try {
-			DetalleEnvioControllerTempDao servicioCliente = new DetalleEnvioControllerTempDao();
+		
 			return servicioCliente.listadoDetalleEnvioTemp();
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -60,7 +65,7 @@ public class ServicioWebDetalleEnvioTemp {
 	public List<DetalleEnvioTemp> buscarDetalleEnvioTempById(@RequestParam(value = "id")  String id) {
 		
 		try {
-			DetalleEnvioControllerTempDao servicioCliente = new DetalleEnvioControllerTempDao();
+			
 			return servicioCliente.buscarDetalleEnvioTempXId(Integer.parseInt(id));
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -83,7 +88,7 @@ public class ServicioWebDetalleEnvioTemp {
 			
 			) {
 		try {
-			DetalleEnvioControllerTempDao servicioCliente = new DetalleEnvioControllerTempDao();
+			
 			return servicioCliente.crearDetalleEnvioTemp(cliente);
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -104,7 +109,7 @@ public class ServicioWebDetalleEnvioTemp {
 
 			@RequestBody DetalleEnvioTemp cliente) {
 		try {
-			DetalleEnvioControllerTempDao servicioCliente = new DetalleEnvioControllerTempDao();
+			
 
 			return servicioCliente.editarDetalleEnvioTemp(cliente);
 
@@ -128,7 +133,7 @@ public class ServicioWebDetalleEnvioTemp {
 		
 			@RequestParam(value = "id")  String id) {
 		try {
-			DetalleEnvioControllerTempDao servicioCliente = new DetalleEnvioControllerTempDao();
+		
 		
 			return servicioCliente.eliminarDetalleEnvioTemp(Integer.parseInt(id));
 		

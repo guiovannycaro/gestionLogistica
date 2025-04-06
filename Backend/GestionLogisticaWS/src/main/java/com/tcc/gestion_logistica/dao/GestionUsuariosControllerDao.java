@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Service;
 
 import com.tcc.gestion_logistica.interfaces.GestionUsuariosInterfaseDao;
 import com.tcc.gestion_logistica.model.User;
@@ -12,6 +13,8 @@ import com.tcc.gestion_logistica.model.Usuarios;
 
 import com.tcc.gestion_logistica.util.ProcedureUtil;
 
+
+@Service
 public class GestionUsuariosControllerDao implements GestionUsuariosInterfaseDao{
 
 	protected final Log log = LogFactory.getLog(this.getClass());

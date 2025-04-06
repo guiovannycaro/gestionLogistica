@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.tcc.gestion_logistica.dao.GestionUsuariosControllerDao;
+import com.tcc.gestion_logistica.interfaces.GestionUsuariosInterfaseDao;
 import com.tcc.gestion_logistica.model.User;
 import com.tcc.gestion_logistica.model.Usuarios;
 import com.tcc.gestion_logistica.util.ExceptionUtil;
@@ -19,6 +20,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
 @CrossOrigin(origins = {"http://localhost:4200/"} )
@@ -27,6 +30,9 @@ import org.springframework.http.MediaType;
 @Api(value = "Servicio Gestion Usuarios")
 public class ServicioWebGestionUsuarios {
 	protected final Log log = LogFactory.getLog(this.getClass());
+	
+	@Autowired
+	private GestionUsuariosInterfaseDao servicioCliente;
 
 	@PostMapping(value = "/validarUsuarios", consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "validar Usuarios", response = User.class, notes = "Obtiene todos Los Datos ")
@@ -41,7 +47,7 @@ public class ServicioWebGestionUsuarios {
 		
 		boolean dato = false;
 		try {
-			GestionUsuariosControllerDao servicioCliente = new GestionUsuariosControllerDao();
+			
 			 
 			dato = servicioCliente.validarUsuarios(use);
 		} catch (Exception e) {
@@ -63,7 +69,7 @@ public class ServicioWebGestionUsuarios {
 	public String consCambiarContrasena(@RequestParam("useremail") String useremail,@RequestParam("password") String password) {
 	
 		try {
-			GestionUsuariosControllerDao servicioCliente = new GestionUsuariosControllerDao();
+			
 			 servicioCliente.cambiarContrasena(useremail,password);
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -84,7 +90,7 @@ public class ServicioWebGestionUsuarios {
 			@RequestParam("user") String user) {
 		Usuarios datos = new Usuarios();
 		try {
-			GestionUsuariosControllerDao servicioCliente = new GestionUsuariosControllerDao();
+			
 			datos = servicioCliente.recordarContrasena(user);
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -106,7 +112,7 @@ public class ServicioWebGestionUsuarios {
 			@RequestParam("user") String user) {
 		Usuarios datos = new Usuarios();
 		try {
-			GestionUsuariosControllerDao servicioCliente = new GestionUsuariosControllerDao();
+			
 			datos = servicioCliente.getPerfil(user);
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));

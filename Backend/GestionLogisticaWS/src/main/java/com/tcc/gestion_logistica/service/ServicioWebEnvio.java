@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.tcc.gestion_logistica.dao.EnvioControllerDao;
+import com.tcc.gestion_logistica.interfaces.EnvioInterfaceDao;
 import com.tcc.gestion_logistica.model.Envio;
 import com.tcc.gestion_logistica.util.ExceptionUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
 
@@ -27,6 +30,8 @@ import org.springframework.http.MediaType;
 @Api(value = "Servicio Envio")
 public class ServicioWebEnvio {
 	protected final Log log = LogFactory.getLog(this.getClass());
+	@Autowired
+	protected EnvioInterfaceDao servicioCliente;
 
 	@GetMapping(value = "/ListarEnvio")
 	@ApiOperation(value = "lista Envio", response = Envio.class, notes = "Obtiene todos Los Datos ")
@@ -39,7 +44,7 @@ public class ServicioWebEnvio {
 		@ApiResponse(code = 404, message = "No existen datos Asociados", response = Envio.class), })
 	public List<Envio> ListarDetalleEnvio() {
 		try {
-			EnvioControllerDao servicioCliente = new EnvioControllerDao();
+			
 			return servicioCliente.listadoEnvio();
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -61,7 +66,7 @@ public class ServicioWebEnvio {
 			) {
 		Envio c = null;
 		try {
-			EnvioControllerDao servicioCliente = new EnvioControllerDao();
+			
 			c = servicioCliente.buscarEnvioXId(Integer.parseInt(id) );
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -81,7 +86,7 @@ public class ServicioWebEnvio {
 	public String crearEnvio(
 			@RequestBody Envio cliente) {
 		try {
-			EnvioControllerDao servicioCliente = new EnvioControllerDao();
+			
 			return servicioCliente.crearEnvio(cliente);
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -102,7 +107,7 @@ public class ServicioWebEnvio {
 	public String enviarDatosTemporal(
 			@RequestBody Envio cliente) {
 		try {
-			EnvioControllerDao servicioCliente = new EnvioControllerDao();
+			
 			return servicioCliente.envioEnvioTemporal(cliente);
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -127,7 +132,7 @@ public class ServicioWebEnvio {
 			@RequestBody Envio cliente) {
 		try {
 			System.err.println("entra edita");
-			EnvioControllerDao servicioCliente = new EnvioControllerDao();
+			
 
 			return servicioCliente.editarEnvio(cliente);
 
@@ -151,7 +156,7 @@ public class ServicioWebEnvio {
 		
 			@RequestParam(value = "id")  String id) {
 		try {
-			EnvioControllerDao servicioCliente = new EnvioControllerDao();
+			
 			return servicioCliente.eliminarEnvio(Integer.parseInt(id));
 		
 		} catch (Exception e) {

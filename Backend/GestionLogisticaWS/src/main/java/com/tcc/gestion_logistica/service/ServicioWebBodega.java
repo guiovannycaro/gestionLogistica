@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.tcc.gestion_logistica.dao.BodegaControllerDao;
+import com.tcc.gestion_logistica.interfaces.BodegainferfaseDao;
 import com.tcc.gestion_logistica.model.Bodega;
 import com.tcc.gestion_logistica.util.ExceptionUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
 @CrossOrigin(origins = {"http://localhost:4200/"} )
@@ -26,7 +29,10 @@ import org.springframework.http.MediaType;
 @Api(value = "Servicio Bodega")
 public class ServicioWebBodega {
 	protected final Log log = LogFactory.getLog(this.getClass());
-
+	
+	@Autowired
+protected BodegainferfaseDao servicioCliente;
+	
 	@GetMapping(value = "/ListarBodegas")
 	@ApiOperation(value = "Bodega Bodega", response = Bodega.class, notes = "Obtiene todos Los Datos ")
 	@ApiResponses({
@@ -38,7 +44,7 @@ public class ServicioWebBodega {
 		@ApiResponse(code = 404, message = "No existen datos Asociados", response = Bodega.class), })
 	public List<Bodega> ListarClientes() {
 		try {
-			BodegaControllerDao servicioCliente = new BodegaControllerDao();
+			
 			return servicioCliente.listadoDeBodega();
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -58,7 +64,7 @@ public class ServicioWebBodega {
 	public Bodega buscarClientesById(@RequestParam(value = "id")  String id) {
 		Bodega c = null;
 		try {
-			BodegaControllerDao servicioCliente = new BodegaControllerDao();
+			
 			c = servicioCliente.buscarBodegaXId(Integer.parseInt(id));
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -78,7 +84,7 @@ public class ServicioWebBodega {
 	public String crearBodega(
 			@RequestBody Bodega cliente) {
 		try {
-			BodegaControllerDao servicioCliente = new BodegaControllerDao();
+			
 			return servicioCliente.crearBodega(cliente);
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -99,7 +105,7 @@ public class ServicioWebBodega {
 
 			@RequestBody Bodega cliente) {
 		try {
-			BodegaControllerDao servicioCliente = new BodegaControllerDao();
+			
 
 			return servicioCliente.editarBodega(cliente);
 
@@ -123,7 +129,7 @@ public class ServicioWebBodega {
 		
 			@RequestParam(value = "id")  String id) {
 		try {
-			BodegaControllerDao servicioCliente = new BodegaControllerDao();
+			
 			return servicioCliente.eliminarBodega(Integer.parseInt(id));
 		
 		} catch (Exception e) {

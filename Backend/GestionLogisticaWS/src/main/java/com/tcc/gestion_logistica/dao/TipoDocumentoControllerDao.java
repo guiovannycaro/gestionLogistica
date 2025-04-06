@@ -1,15 +1,18 @@
 package com.tcc.gestion_logistica.dao;
 
 import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Service;
 
 import com.tcc.gestion_logistica.interfaces.TipoDocumentoImplementsDao;
 import com.tcc.gestion_logistica.model.TipoDocumento;
 import com.tcc.gestion_logistica.util.ProcedureUtil;
 
+@Service
 public class TipoDocumentoControllerDao implements TipoDocumentoImplementsDao{
 
 	protected final Log log = LogFactory.getLog(this.getClass());

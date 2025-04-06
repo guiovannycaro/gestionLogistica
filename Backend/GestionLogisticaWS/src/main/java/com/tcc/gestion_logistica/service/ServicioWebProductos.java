@@ -11,13 +11,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.tcc.gestion_logistica.dao.ProductoControllerDao;
+
+import com.tcc.gestion_logistica.interfaces.ProductoInterfaseDao;
 import com.tcc.gestion_logistica.model.Productos;
 import com.tcc.gestion_logistica.util.ExceptionUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
 
@@ -28,6 +31,10 @@ import org.springframework.http.MediaType;
 @Api(value = "Servicio Productos")
 public class ServicioWebProductos {
 	protected final Log log = LogFactory.getLog(this.getClass());
+	
+	@Autowired
+	private  ProductoInterfaseDao servicioCliente;
+	
 
 	@GetMapping(value = "/ListarProductos")
 	@ApiOperation(value = "lista Productos", response = Productos.class, notes = "Obtiene todos Los Datos ")
@@ -40,7 +47,7 @@ public class ServicioWebProductos {
 		@ApiResponse(code = 404, message = "No existen datos Asociados", response = Productos.class), })
 	public List<Productos> ListarDetalleProducto() {
 		try {
-			ProductoControllerDao servicioCliente = new ProductoControllerDao();
+			
 			return servicioCliente.listadoProducto();
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -60,7 +67,7 @@ public class ServicioWebProductos {
 	public Productos buscarDetalleProductoById(	@RequestParam(value = "id")  String id) {
 		Productos c = null;
 		try {
-			ProductoControllerDao servicioCliente = new ProductoControllerDao();
+			
 			c = servicioCliente.buscarProductoXId(Integer.parseInt(id));
 		} catch (Exception e) {
 			log.error(ExceptionUtil.format(e));
@@ -80,7 +87,7 @@ public class ServicioWebProductos {
 	public String crearProductos(
 			@RequestBody Productos cliente) {
 		try {
-			ProductoControllerDao servicioCliente = new ProductoControllerDao();
+			
 			
 			System.err.println(cliente.getPRO_NOMBRES() + " " + cliente.getPRO_DESCRIPCION() + " " + cliente.getPRO_OBSERVACION()
 			+ " " + " "+ cliente.getPROD_VALOR() + " " + cliente.getPROD_CANTIDAD() + " " +cliente.getPRO_ESTADO());
@@ -106,7 +113,7 @@ public class ServicioWebProductos {
 
 			@RequestBody Productos cliente) {
 		try {
-			ProductoControllerDao servicioCliente = new ProductoControllerDao();
+			
 			System.err.println(cliente.getPRO_ID() + " " +cliente.getPRO_NOMBRES() + " " + cliente.getPRO_DESCRIPCION() + " " + cliente.getPRO_OBSERVACION()
 			+ " " + " "+ cliente.getPROD_VALOR() + " " + cliente.getPROD_CANTIDAD() + " " +cliente.getPRO_ESTADO());
 			
@@ -132,7 +139,7 @@ public class ServicioWebProductos {
 		
 			@RequestParam(value = "id")  String id) {
 		try {
-			ProductoControllerDao servicioCliente = new ProductoControllerDao();
+			
 			return servicioCliente.eliminarProducto(Integer.parseInt(id));
 		
 		} catch (Exception e) {

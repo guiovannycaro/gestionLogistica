@@ -19,4 +19,6 @@ public interface EnvioInterfaceDao {
 	
 	 public Envio buscarEnvioXId(int id) throws SQLException;
 	 public String eliminarEnvioTemp(int id) throws SQLException;
+	 
+		public String envioEnvioTemporal(Envio cli) throws SQLException; 
 }

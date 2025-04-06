@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Service;
 
 import com.tcc.gestion_logistica.interfaces.ProductoInterfaseDao;
 import com.tcc.gestion_logistica.model.Productos;
 import com.tcc.gestion_logistica.util.ProcedureUtil;
 
+
+@Service
 public class ProductoControllerDao implements ProductoInterfaseDao{
 
 	protected final Log log = LogFactory.getLog(this.getClass());
