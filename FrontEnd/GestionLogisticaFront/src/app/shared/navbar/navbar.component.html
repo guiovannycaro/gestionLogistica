@@ -41,14 +41,45 @@
         <!-- Notifications Dropdown Menu -->
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="far fa-bell"></i>
+                <i class="fas fa-user"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <span class="dropdown-item dropdown-header">15 Notifications</span>
+
+                <a href="#" class="dropdown-item">
+                    <!-- Message Start -->
+                    <div class="media">
+
+                        <div class="media-body">
+                            <h3 class="dropdown-item-title">
+
+                                Administrador
+                                <p class="text-sm text-muted"><i class="fas fa-user"></i> Guiovanny Caro</p>
+                                <span class="float-right text-sm text-black"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
+                            </h3>
+                        </div>
+                    </div>
+                    <!-- Message End -->
+                </a>
+
+
+
+
+
                 <div class="dropdown-divider"></div>
-                <a (click)="logout()" class="nav-link" style="cursor: pointer;">
-                  Cerrar Session
-                  <span class="float-right text-sm text-black"><i class="fa fa-sign-out" aria-hidden="true"></i></span></a>
+                <a href="#" class="dropdown-item">
+                    <!-- Message Start -->
+                    <div class="media">
+
+                        <div class="media-body">
+                            <h3 class="dropdown-item-title">
+                                <a (click)="logout()" class="nav-link" style="cursor: pointer;">
+                                    <p><i class="fas fa-sign-out-alt"></i> Cerrar Session </p>
+                                    <span class="float-right text-sm text-black"><i class="fa fa-sign-out" aria-hidden="true"></i></span></a>
+                            </h3>
+                        </div>
+                    </div>
+                    <!-- Message End -->
+                </a>
                 <div class="dropdown-divider"></div>
             </div>
         </li>
@@ -56,16 +87,8 @@
 
 
 
-        <li class="nav-item">
-            <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                <i class="fas fa-expand-arrows-alt"></i>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                <i class="fas fa-th-large"></i>
-            </a>
-        </li>
+
+
     </ul>
 </nav>
 <!-- /.navbar -->
