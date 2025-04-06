@@ -61,7 +61,10 @@ import { NopageFoundComponent } from './nopage-found/nopage-found.component';
 
     HeaderComponent,
 
-
+    NavbarComponent,
+    BreadcrumbsComponent,
+    FooterComponent,
+    SidebarComponent,
 
 
     BodegaComponent,
