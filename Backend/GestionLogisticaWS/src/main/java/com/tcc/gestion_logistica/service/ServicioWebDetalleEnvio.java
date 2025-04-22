@@ -86,7 +86,7 @@ protected DeralleEnviointerfaceDao servicioCliente;
 	public String crearDetalleEnvio(
 			@RequestBody DatosEnvio cliente) {
 		try {
-			System.out.println("cliente " + cliente.getDATENV_ID() + " "+ cliente.getDATENV_CANTIDAD() + " " + cliente.getDATENV_REF());
+			System.out.println("cliente " + cliente.getDATENV_ID() + " "+ cliente.getDATENV_CANTIDAD() + " " + cliente.getDATENV_REF() + cliente.getDATENV_Descuento());
 			
 			return servicioCliente.crearDetalleEnvio(cliente);
 		} catch (Exception e) {

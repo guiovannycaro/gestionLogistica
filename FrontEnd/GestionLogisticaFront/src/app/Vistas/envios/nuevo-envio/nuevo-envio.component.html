@@ -115,10 +115,17 @@
                 </div>
 
                 <div class="col">
+                    <label for="desc">Descuento</label>
+                    <input type="text" class="form-control" id="desc" name="desc" [(ngModel)]="datoenviar.datenv_Descuento">
+                </div>
+
+                <div class="col">
                     <div>&nbsp;</div>
                 </div>
                 <div class="col">
+
                     <button>➕ Agregar Mercancia</button>
+
                 </div>
 
                 <div class="col">
@@ -144,15 +151,15 @@
                     <th width="220px">Accion</th>
                 </tr>
 
-                <tr *ngFor="let d of detalleenvio">
-                    <td> </td>
-                    <td>{{d.envd_PROD_ID}}</td>
-                    <td>{{d.envd_CANTIDAD}}</td>
-                    <td>{{d.envd_PRECIO}}</td>
-                    <td>{{ d.envd_TOTAL }}</td>
+                <tr *ngFor="let d of detalleenvioTemp">
+                    <td>{{d.envdt_IDP}} </td>
+                    <td>{{d.envdt_PROD_ID}}</td>
+                    <td>{{d.envdt_CANTIDAD}}</td>
+                    <td>{{d.envdt_PRECIO}}</td>
+                    <td>{{ d.envdt_TOTAL }}</td>
                     <td>
 
-                        <button type="button" class="btn btn-danger" (click)="eliminarEnvioDetalle(d.envd_ID)">Eliminar</button>
+                        <button type="button" class="btn btn-danger" (click)="eliminarEnvioDetalle(d.envdt_IDP)">Eliminar</button>
                     </td>
                 </tr>
 

@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tcc.gestion_logistica.interfaces.DeralleEnviointerfaceDao;
+import com.tcc.gestion_logistica.interfaces.ProductoInterfaseDao;
 import com.tcc.gestion_logistica.model.DatosEnvio;
 import com.tcc.gestion_logistica.model.DetalleEnvio;
 import com.tcc.gestion_logistica.model.Productos;
@@ -18,7 +20,8 @@ import io.swagger.annotations.ApiModelProperty;
 public class DetalleEnvioControllerDao implements DeralleEnviointerfaceDao{
 
 	protected final Log log = LogFactory.getLog(this.getClass());
-	
+	@Autowired
+	private ProductoInterfaseDao serviciproducto;
 	
 	public List<DetalleEnvio> listadoDetalleEnvio() throws SQLException {
 		ArrayList<DetalleEnvio> listadetallee = new ArrayList<>();
@@ -45,20 +48,29 @@ public class DetalleEnvioControllerDao implements DeralleEnviointerfaceDao{
 	
 	public String crearDetalleEnvio(DatosEnvio cli) throws SQLException {
 		log.warn("nuevo cliente : " + cli );
-		ProductoControllerDao pr = new ProductoControllerDao();
+		
 		        
-		Productos p = pr.buscarProductoXId(cli.getDATENV_ID());
+		Productos p = serviciproducto.buscarProductoXId(cli.getDATENV_ID());
 		
 		System.err.println("viene front " + " "+ cli.getDATENV_ID() + " " +cli.getDATENV_CANTIDAD() + " " +p.getPROD_VALOR());
 		
+		
+		
 		int total = Integer.parseInt(p.getPROD_VALOR()) * cli.getDATENV_CANTIDAD();
+		int descuento = total - cli.getDATENV_Descuento();
+		int iva = descuento * 19/100;
+	    int subtotal = descuento ;
+	    int gtotal = subtotal + iva;
 		
 		System.err.println("viene front 2 " + " "+ cli.getDATENV_ID() + " " +cli.getDATENV_CANTIDAD() + " " +p.getPROD_VALOR() + " " +total + " "+cli.getDATENV_REF()) ;
 		
 		String[] parameters = { ""+cli.getDATENV_ID(),
 				""+cli.getDATENV_CANTIDAD(),
 				""+p.getPROD_VALOR(),
-				""+total ,
+				""+subtotal,
+				""+iva,
+				""+descuento,
+				""+gtotal ,
 				""+cli.getDATENV_REF()};
 		ProcedureUtil.executeUpdateGestion("GL_PInsertarDetalleEnvioTemp", parameters);
 		return "{\"codigo\":\"200\",\"mensaje\":\"Mensaje Informativo\",\"descripcion\":\"El registro fue ingresado De Manera Correcta\"}";

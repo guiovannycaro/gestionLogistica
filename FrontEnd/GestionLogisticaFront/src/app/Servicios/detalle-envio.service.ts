@@ -32,9 +32,17 @@ export class DetalleEnvioService {
     return response;
   }
 
+  obtenerListaDetalleEnvioTemp():Observable<DetalleEnvioTemp[]>{
+    let direccion = this.BaseUrl + "CrudDetalleEnvioTemp/ListarDetalleEnvioTemp";
+    let response = this.http.get<DetalleEnvioTemp[]>(direccion,this.httpOptions);
+    console.log(response);
+    return response;
+  }
+
+
   eliminarDetalleEnvio(id:number):Observable<any>{
 
-    let direccion = this.BaseUrl + "CrudDetalleEnvio/eliminarDetalleEnvio?id="+id;
+    let direccion = this.BaseUrl + "CrudDetalleEnvioTemp/eliminarDetalleEnvioTemp?id="+id;
     let response = this.http.get<any>(direccion);
     console.log(response);
     return response;
@@ -44,6 +52,7 @@ export class DetalleEnvioService {
   registrarDetalleEnvio(envio:DatosEnvio):Observable<any>{
 
     let direccion = this.BaseUrl + "CrudDetalleEnvio/crearDetalleEnvio";
+    console.log(envio);
     let response = this.http.post<any>(direccion,envio,this.httpOptions);
     return response;
   }
@@ -81,7 +90,7 @@ export class DetalleEnvioService {
     return response;
  }
 
- eliminarDetalleEnvioTemp(id:String){
+ eliminarDetalleEnvioTemp(id:number){
   let direccion = this.BaseUrl + "CrudDetalleEnvioTemp/eliminarDetalleEnvioTemp?id="+id;
   let response = this.http.get<any>(direccion);
   console.log(response);

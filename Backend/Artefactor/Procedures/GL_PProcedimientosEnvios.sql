@@ -97,6 +97,7 @@ END GL_PInsertarEnvio;
 
 
 CREATE OR REPLACE PROCEDURE SCH_CN.GL_PInsertarEnvioDetalleTemporal (
+    p_ENV_ENVIOID_init IN VARCHAR2,
     p_ENV_REFERENCIA_init IN VARCHAR2
 ) AS 
 BEGIN
@@ -116,9 +117,61 @@ BEGIN
     
   
         -- Insertar datos en la tabla temporal
-        INSERT INTO SCH_CN.GL_TDETALLEENVIOTEMP (ENVDT_PROD_ID, ENVDT_CANTIDAD, ENVDT_PRECIO, ENVDT_TOTAL, ENVDT_ID)
-        SELECT ENVD_PROD_ID, ENVD_CANTIDAD, ENVD_PRECIO, ENVD_TOTAL, p_ENV_REFERENCIA_init
-        FROM GL_TDETALLEENVIO;
+       CREATE OR REPLACE PROCEDURE SCH_CN.GL_PInsertarEnvioDetalleTemporal (
+    p_ENV_ENVIOID_init IN VARCHAR2,
+    p_ENV_REFERENCIA_init IN VARCHAR2
+) AS 
+BEGIN
+    -- Creado por : guiovanny
+    -- Fecha      : 16/05/2024
+    -- Solicitud  : tcc
+    -- Historial
+    -- =========================================================================================================================================================================
+    --  Version     Solicitud        Fecha      Realizo        Comentario
+    -- ========== =============== ============ ============== ==================================================================================================================
+    --   12000       tcc         16/05/2024      guiovanny  . Se crea este procedimiento para  InsertarCliente 
+    -- ---------- --------------- ------------ -------------- -----------------------------------------------------------------------------------------------------------------
+    --
+    -- ========== =============== ============ ============== ==================================================================================================================
+    --
+    -- Responsable  de InsertarCliente 
+    
+  
+ 
+       
+        
+  INSERT INTO SCH_CN.GL_TDETALLEENVIO (
+    ENVD_ID,
+    ENVD_PROD_ID,
+    ENVD_CANTIDAD,
+    ENVD_PRECIO,
+    ENVD_SUBTOTAL,
+    ENVD_IVA,
+    ENVD_TOTAL,
+    ENVD_DESCUENTO,
+    ENVD_ENV_ID
+)
+SELECT 
+    p_ENV_ENVIOID_init,         -- Insertar el ID de la tabla temporal
+    ENVDT_PROD_ID,      -- Insertar el ID del producto
+    ENVDT_CANTIDAD,     -- Insertar la cantidad
+    ENVDT_PRECIO,       -- Insertar el precio
+    ENVDT_SUBTOTAL,     -- Insertar el subtotal
+    ENVDT_IVA,          -- Insertar el IVA
+    ENVDT_TOTAL,        -- Insertar el total
+    ENVDT_DESCUENTO,    -- Insertar el descuento
+    p_ENV_REFERENCIA_init           -- Insertar el ID de referencia (ENV_ID de la tabla temporal)
+FROM SCH_CN.GL_TDETALLEENVIOTEMP;
+        
+  
+    EXCEPTION
+        WHEN OTHERS THEN 
+            DBMS_OUTPUT.PUT_LINE('ERROR');
+            DBMS_OUTPUT.PUT_LINE('CODIGO : -1');
+            RAISE;
+    
+END GL_PInsertarEnvioDetalleTemporal;
+/
         
   
     EXCEPTION
@@ -132,8 +185,8 @@ END GL_PInsertarEnvioDetalleTemporal;
 
 
 
-CREATE OR REPLACE PROCEDURE SCH_CN.GL_PlimpiarEnvioDetalle (
-    p_ENV_REFERENCIA_init IN VARCHAR2
+CREATE OR REPLACE PROCEDURE SCH_CN.GL_PBuscarUltIdEnvio (
+   OUT_CURSOR OUT SYS_REFCURSOR
 ) AS 
 BEGIN
     -- Creado por : guiovanny
@@ -151,8 +204,11 @@ BEGIN
     -- Responsable  de InsertarCliente 
     
   
-        -- Insertar datos en la tabla temporal
-      TRUNCATE TABLE SCH_CN.GL_TDETALLEENVIO;
+       OPEN OUT_CURSOR FOR
+       SELECT ENV_ID
+FROM SCH_CN.GL_TENVIO
+ORDER BY ENV_ID DESC
+FETCH FIRST 1 ROWS ONLY;
         
   
     EXCEPTION
@@ -161,8 +217,33 @@ BEGIN
             DBMS_OUTPUT.PUT_LINE('CODIGO : -1');
             RAISE;
     
+END GL_PBuscarUltIdEnvio;
+/
+
+
+
+CREATE OR REPLACE PROCEDURE SCH_CN.GL_PlimpiarEnvioDetalle (
+    p_ENV_REFERENCIA_init IN VARCHAR2
+) AS 
+BEGIN
+    -- Procedimiento para limpiar datos de la tabla GL_TDETALLEENVIO
+    EXECUTE IMMEDIATE 'TRUNCATE TABLE SCH_CN.GL_TDETALLEENVIO';
+
+EXCEPTION
+    WHEN OTHERS THEN 
+        DBMS_OUTPUT.PUT_LINE('ERROR: ' || SQLERRM);
+        RAISE;
 END GL_PlimpiarEnvioDetalle;
 /
+
+
+
+
+
+
+
+
+
 
 
 

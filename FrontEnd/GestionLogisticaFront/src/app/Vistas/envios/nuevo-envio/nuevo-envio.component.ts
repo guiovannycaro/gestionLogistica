@@ -13,6 +13,8 @@ import { ClientesService } from 'src/app/Servicios/clientes.service';
 
 import {  Envio } from 'src/app/Models/envio';
 import { DetalleEnvio } from 'src/app/Models/detalle-envio';
+
+import { DetalleEnvioTemp } from 'src/app/Models/detalle-envio-temp';
 import { Productos } from 'src/app/Models/productos';
 import { Clientes } from 'src/app/Models/clientes';
 import { DatosEnvio } from 'src/app/Models/datosEnvio';
@@ -31,7 +33,7 @@ export class NuevoEnvioComponent  implements OnInit{
   clientes: Clientes[] = [];
   envios: Envio[] = [];
   detalleenvio:DetalleEnvio[] = [];
-
+  detalleenvioTemp:DetalleEnvioTemp[] = [];
 
   constructor(private detenv:DetalleEnvioService,private clien:ClientesService,private prod:ProductosService,private api:EnvioService,private router:Router) {}
 
@@ -62,11 +64,19 @@ export class NuevoEnvioComponent  implements OnInit{
     })
   }
 
+
+  private obtenerDetalleEnvioTemp(){
+    this.detenv.obtenerListaDetalleEnvioTemp().subscribe(dato=>{
+          this.detalleenvioTemp = dato;
+    })
+  }
+
   cargProductoTablTemp(){
     this.datoenviar.datenv_REF =  this.enviosa.env_REFERENCIA;
     this.detenv.registrarDetalleEnvio(this.datoenviar).subscribe(dato=>{
 
       console.log(this.datoenviar);
+
       console.log(dato);
       alert('El registro se Ingreso Correctamente');
       this.obtenerDetalleEnvio();
@@ -83,7 +93,7 @@ export class NuevoEnvioComponent  implements OnInit{
   eliminarEnvioDetalle(id:number){
     this.detenv.eliminarDetalleEnvio(id).subscribe(data =>{
       console.log(data);
-      this.obtenerDetalleEnvio();
+      this.obtenerDetalleEnvioTemp();
     });
    }
 
@@ -96,8 +106,8 @@ export class NuevoEnvioComponent  implements OnInit{
 
    guardarEnvio(){
     this.api.registrarEnvio(this.enviosa).subscribe(dato=>{
-      console.log('DATOS A ENVIAR AL BACK' +this.envios);
-      this.cargDetalleEnvTemp();
+      console.log('DATOS A ENVIAR AL BACK: ' + JSON.stringify(this.enviosa));
+      this.cargDetalleEnv();
       alert('El registro se Ingreso Correctamente');
       window.location.reload();
     },error=>{
@@ -107,7 +117,7 @@ export class NuevoEnvioComponent  implements OnInit{
     })
    }
 
-   cargDetalleEnvTemp(){
+   cargDetalleEnv(){
     this.api.enviarDatosTemporal(this.enviosa).subscribe(dato=>{
       console.log(dato);
     })
@@ -123,7 +133,7 @@ export class NuevoEnvioComponent  implements OnInit{
   onSubmitProducto(){
     console.log(this.productos);
     this.cargProductoTablTemp();
-    this.obtenerDetalleEnvio();
+    this.obtenerDetalleEnvioTemp();
   }
 
 }

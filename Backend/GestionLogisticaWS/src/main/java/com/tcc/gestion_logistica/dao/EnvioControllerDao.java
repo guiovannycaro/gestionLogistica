@@ -52,9 +52,24 @@ public class EnvioControllerDao implements EnvioInterfaceDao{
 	
 	public String envioEnvioTemporal(Envio cli) throws SQLException {
 		log.warn("nuevo Envio : " + cli );
+		 Envio datos = new Envio();
+
+		 String[] parametersu = { };
+		 ProcedureUtil.executeSelectGestion("GL_PBuscarUltIdEnvio", parametersu, resultSet -> {
+				while (resultSet.next()) {
+					datos.setENV_ID(resultSet.getInt(1));
+				}
+			});
+		 
+		
+		System.err.println( "id envio " +datos.getENV_ID());
+		
+		datos.getENV_ID();
 		
 		cli.getENV_REFERENCIA();
-		String[] parameters = { cli.getENV_REFERENCIA()};
+		
+		
+		String[] parameters = { ""+datos.getENV_ID(),cli.getENV_REFERENCIA()};
 		ProcedureUtil.executeUpdateGestion("GL_PInsertarEnvioDetalleTemporal", parameters);
 		limpiarDetalleEnvio(cli);
 		return "{\"codigo\":\"200\",\"mensaje\":\"Mensaje Informativo\",\"descripcion\":\"El registro fue ingresado De Manera Correcta\"}";

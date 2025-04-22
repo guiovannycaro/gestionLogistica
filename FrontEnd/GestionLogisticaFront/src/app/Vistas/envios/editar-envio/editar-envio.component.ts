@@ -94,7 +94,7 @@ export class EditarEnvioComponent implements OnInit{
     })
   }
 
-  eliminarEnvioDetalle(id:String){
+  eliminarEnvioDetalle(id:number){
     this.detenv.eliminarDetalleEnvioTemp(id).subscribe(data =>{
       console.log(data);
       this.obtenerDetalleEnvio();

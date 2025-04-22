@@ -5,8 +5,8 @@ export class DetalleEnvioTemp {
   envdt_CANTIDAD: string;
   envdt_PRECIO:  string;
   envdt_TOTAL:  string;
-  envdt_ID:  string;
-	envdt_IDP:string;
+  envdt_ID:  number
+	envdt_IDP:number;
 
 
   constructor(){
@@ -14,8 +14,8 @@ export class DetalleEnvioTemp {
     this.envdt_CANTIDAD ='';
     this.envdt_PRECIO = '';
     this.envdt_TOTAL ='';
-    this.envdt_ID ='';
-    this.envdt_IDP ='';
+    this.envdt_ID =0;
+    this.envdt_IDP =0;
 
   }
 }

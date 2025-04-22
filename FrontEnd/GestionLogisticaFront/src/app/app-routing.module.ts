@@ -14,11 +14,12 @@ import { ProductosComponent } from './Vistas/productos/productos.component';
 
 const routes: Routes = [
   {path: '' , redirectTo:'login' , pathMatch:'full'},
+  {path:'home' , component: DashboardComponent},
   {path:'Usuarios' , component: UsuariosComponent},
   {path:'Clientes' , component: ClientesComponent},
   {path:'Envios' , component: EnviosComponent },
   {path:'Productos' , component: ProductosComponent},
-  {path:'home' , component: DashboardComponent},
+
 
   {path:'**' , component: NopageFoundComponent},
 ];
