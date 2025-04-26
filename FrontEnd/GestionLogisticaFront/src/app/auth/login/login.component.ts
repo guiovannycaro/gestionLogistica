@@ -51,7 +51,7 @@ onSubmit()
               console.log('dato del usario ' +  this.email); // Recuperar el username
                           sessionStorage.setItem('username',this.email);
                           console.log('Usuario guardado:', sessionStorage.getItem('username')); // Verifica que el dato se guarde
-                          this.router.navigate(['/home']);
+                          this.router.navigate(['/dashboard']);
 
              }else{
                alert('Clave Invalidad');

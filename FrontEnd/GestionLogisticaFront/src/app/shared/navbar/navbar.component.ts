@@ -29,6 +29,6 @@ private router:Router,) {
 
       logout() {
         localStorage.removeItem('username');
-        this.router.navigate(['/index']);
+        this.router.navigate(['/login']);
       }
 }

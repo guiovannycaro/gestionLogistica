@@ -48,6 +48,13 @@ import { EditarclienteComponent } from './Vistas/clientes/editarcliente/editarcl
 import { NuevoProductoComponent } from './Vistas/productos/nuevo-producto/nuevo-producto.component';
 import { EditarProductoComponent } from './Vistas/productos/editar-producto/editar-producto.component';
 import { NopageFoundComponent } from './nopage-found/nopage-found.component';
+import { TrasportadoresComponent } from './Vistas/trasportadores/trasportadores.component';
+import { SolicitudesComponent } from './Vistas/solicitudes/solicitudes.component';
+import { OperacionComponent } from './Vistas/operacion/operacion.component';
+import { ReportesComponent } from './Vistas/reportes/reportes.component';
+import { SegimientoComponent } from './Vistas/segimiento/segimiento.component';
+import { VehiculosComponent } from './Vistas/vehiculos/vehiculos.component';
+import { MercanciasComponent } from './Vistas/mercancias/mercancias.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +94,13 @@ import { NopageFoundComponent } from './nopage-found/nopage-found.component';
     EditarclienteComponent,
     NuevoProductoComponent,
     EditarProductoComponent,
+    TrasportadoresComponent,
+    SolicitudesComponent,
+    OperacionComponent,
+    ReportesComponent,
+    SegimientoComponent,
+    VehiculosComponent,
+    MercanciasComponent,
 
 
   ],
