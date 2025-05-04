@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @SuppressWarnings("all") // Nombres a utilizar en los objetos JSON a enviar al cliente
-@ApiModel(value = "Cliente", description = "Esta clase representa la informacion del cliente")
+@ApiModel(value = "Clientes", description = "Esta clase representa la informacion del clientes")
 public class Clientes {
 
 	@ApiModelProperty(value = "CLI_ID", required = true, dataType = "Integer", example = "00000000", position = 1)
