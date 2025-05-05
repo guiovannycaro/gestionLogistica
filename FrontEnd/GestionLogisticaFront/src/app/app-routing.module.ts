@@ -43,7 +43,7 @@ const routes: Routes = [
   {path:'dashboard/Solicitudes' , component: SolicitudesComponent},
   {path:'dashboard/Reportes' , component: ReportesComponent},
   {path:'dashboard/Segimiento' , component: SegimientoComponent},
-  { path:'dashboard/Vehiculos' , component: VehiculosComponent},
+  { path:'dashboard/vehiculos' , component: VehiculosComponent},
   { path:'dashboard/Mercancias' , component:   MercanciasComponent  },
 
 
