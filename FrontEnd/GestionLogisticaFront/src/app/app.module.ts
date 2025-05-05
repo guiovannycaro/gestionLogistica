@@ -55,16 +55,12 @@ import { ReportesComponent } from './Vistas/reportes/reportes.component';
 import { SegimientoComponent } from './Vistas/segimiento/segimiento.component';
 import { VehiculosComponent } from './Vistas/vehiculos/vehiculos.component';
 import { MercanciasComponent } from './Vistas/mercancias/mercancias.component';
+import { NuevabodegaComponent } from './bodega/nuevabodega/nuevabodega.component';
+import { EditarbodegaComponent } from './Vistas/bodega/editarbodega/editarbodega.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-
-    NopageFoundComponent,
-
-    BreadcrumbsComponent,
-    FooterComponent,
-
 
 
 
@@ -73,7 +69,7 @@ import { MercanciasComponent } from './Vistas/mercancias/mercancias.component';
     FooterComponent,
     SidebarComponent,
 
-
+    DashboardComponent,
     BodegaComponent,
     ClientesComponent,
     EnviosComponent,
@@ -85,7 +81,7 @@ import { MercanciasComponent } from './Vistas/mercancias/mercancias.component';
     UsuariosComponent,
     ZonasComponent,
 
-    DashboardComponent,
+
     NuevoUsuarioComponent,
     EditarUsuarioComponent,
     EditarEnvioComponent,
@@ -101,22 +97,26 @@ import { MercanciasComponent } from './Vistas/mercancias/mercancias.component';
     SegimientoComponent,
     VehiculosComponent,
     MercanciasComponent,
-
+    NuevabodegaComponent,
+    EditarbodegaComponent,
+    NopageFoundComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-MatFormFieldModule,
- MatInputModule,
-  MatTableModule,
-   MatSortModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTableModule,
+    MatSortModule,
     MatPaginatorModule,
     FormsModule,
     HttpClientModule,
     MatDialogModule,
     NgxPaginationModule,
+    BrowserAnimationsModule,
+    AuthModule,
     BrowserAnimationsModule
   ],
   providers: [],
