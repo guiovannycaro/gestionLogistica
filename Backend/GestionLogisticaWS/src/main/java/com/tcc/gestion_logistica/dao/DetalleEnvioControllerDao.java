@@ -38,7 +38,7 @@ public class DetalleEnvioControllerDao implements DeralleEnviointerfaceDao{
 				datos.setENVD_TOTAL(resultSet.getInt(7));	
 				datos.setENVD_DESCUENTO(resultSet.getInt(8));	
 				datos.setENVD_ENV_ID(resultSet.getInt(9));
-				 
+				
 			
 				listadetallee.add(datos);
 			}

@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.tcc.gestion_logistica.interfaces.ClientesInterface2;
 import com.tcc.gestion_logistica.model.Clientes;
+import com.tcc.gestion_logistica.util.ProcedureUtil;
 import com.tcc.gestion_logistica.util.executeQueryBD;
 
 public class ClientesDao implements ClientesInterface2 {
@@ -113,8 +114,25 @@ public class ClientesDao implements ClientesInterface2 {
 
 	@Override
 	public Clientes buscarClienteXId(Clientes cli) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		 Clientes datos = new Clientes();
+			String[] parameters = { ""+cli };
+			ProcedureUtil.executeSelectGestion("GL_PBuscarClienteId", parameters, resultSet -> {
+				while (resultSet.next()) {
+					datos.setCLI_ID(resultSet.getInt(1));
+					datos.setCLI_NOMBRES(resultSet.getString(2));
+					datos.setCLI_TIPODOCUMENTO(resultSet.getInt(3));
+					datos.setCLI_CEDULA(resultSet.getString(4));
+					datos.setCLI_CORREO(resultSet.getString(5));
+					datos.setCLI_CELULAR(resultSet.getString(6));
+					datos.setCLI_DIRECCION(resultSet.getString(7));
+					datos.setCLI_CIUDAD_ID(resultSet.getInt(8));
+					datos.setCLI_ESTADO(resultSet.getString(9));
+					
+					
+					
+				}
+			});
+			return datos;
 	}
 
 }

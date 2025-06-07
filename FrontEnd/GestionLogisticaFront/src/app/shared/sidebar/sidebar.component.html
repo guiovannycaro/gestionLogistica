@@ -1,9 +1,8 @@
-<!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="/dashboard" class="brand-link">
-        <img src="./assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Gestion Logistica Tcc</span>
+    <a href="/dashboard/" class="brand-link">
+        <img src="./assets/dist/img/user2-160x160.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">Gestion Logistica</span>
     </a>
 
     <!-- Sidebar -->
@@ -14,7 +13,7 @@
                 <img src="./assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Gestion Logistica</a>
+                <a href="#" class="d-block">Guiovanny Caro</a>
             </div>
         </div>
 
@@ -24,8 +23,8 @@
                 <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
                 <div class="input-group-append">
                     <button class="btn btn-sidebar">
-            <i class="fas fa-search fa-fw"></i>
-          </button>
+              <i class="fas fa-search fa-fw"></i>
+            </button>
                 </div>
             </div>
         </div>
@@ -34,38 +33,78 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
-             with font-awesome or any other icon font library -->
-
+               with font-awesome or any other icon font library -->
 
 
                 <li class="nav-item">
-                    <a class="nav-link">
-                        <i class="nav-icon fas fa-chart-pie"></i>
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-copy"></i>
                         <p>
                             Administracion
-                            <i class="right fas fa-angle-left"></i>
+                            <i class="fas fa-angle-left right"></i>
+                            <span class="badge badge-info right"></span>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a routerLink="/dashboard/Clientes" class="nav-link">
+                            <a href="/dashboard/Usuarios" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Usuarios</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/dashboard/Roles" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Roles</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/dashboard/Clieestes" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Clientes</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a routerLink="/dashboard/Usuarios" class="nav-link">
+                            <a href="/dashboard/Pais" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Usuarios</p>
+                                <p>Pais </p>
                             </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a href="/dashboard/ciudad" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Ciudades</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/dashboard/Departamentos" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Departamentos </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/dashboard/Bodegas" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Bodegas</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/dashboard/Zonas" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Zonas</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/dashboard/Vehiculos" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Veliculos</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
-
                 <li class="nav-item">
-                    <a class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
                             Gestion
@@ -74,40 +113,40 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a routerLink="/dashboard/Envios" class="nav-link">
+                            <a href="/dashboard/Envios" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Envios</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a routerLink="/dashboard/trasportadores" class="nav-link">
+                            <a href="/dashboard/trasportadores" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Trasportadores</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a routerLink="/dashboard/vehiculos" class="nav-link">
+                            <a href="/dashboard/vehiculos" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>vehiculos</p>
+                                <p>Vehiculos</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a routerLink="/dashboard/Mercancias" class="nav-link">
+                            <a href="/dashboard/Mercancias" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>mercancias</p>
+                                <p>Mercancias</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a routerLink="/dashboard/Bodega" class="nav-link">
+                            <a href="/dashboard/Bodegas" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>bodegas</p>
+                                <p>Bodegas</p>
                             </a>
                         </li>
                     </ul>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
                             Segimiento
@@ -116,21 +155,19 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a routerLink="/dashboard/Operacion" class="nav-link">
+                            <a href="/dashboard/Operacion" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Operacion</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a routerLink="/dashboard/Segimiento" class="nav-link">
+                            <a href="/dashboard/Informes" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Segimiento Solicitudes</p>
+                                <p>Informes</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-
-
 
                 <li class="nav-item">
                     <a class="nav-link">
@@ -151,7 +188,6 @@
                     </ul>
                 </li>
 
-
                 <li class="nav-item">
                     <a class="nav-link">
                         <i class="nav-icon fas fa-chart-pie"></i>
@@ -170,8 +206,6 @@
 
                     </ul>
                 </li>
-
-
 
             </ul>
         </nav>
